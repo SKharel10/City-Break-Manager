@@ -2,10 +2,7 @@ package com.example.citybreakmanager.controller;
 
 import com.example.citybreakmanager.model.City;
 import com.example.citybreakmanager.service.CityService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,7 +10,12 @@ import java.util.List;
 @RequestMapping("/api/city")
 public class CityController {
 
-    private CityService cityService;
+    private final CityService cityService;
+
+    public CityController(CityService cityService){
+        this.cityService = cityService;
+    }
+
 
     @GetMapping
     public List<City> getAllCities(){
@@ -25,6 +27,7 @@ public class CityController {
         return cityService.getCityById(id);
     }
 
+    @PostMapping
     public void insertCity(City city){
         cityService.insertCity(city);
     }
