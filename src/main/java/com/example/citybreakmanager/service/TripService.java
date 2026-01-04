@@ -9,10 +9,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class TripService {
   private final TripRepository tripRepository;
   private final CityRepository cityRepository;
+
+  public TripService(TripRepository tripRepository, CityRepository cityRepository) {
+    this.tripRepository = tripRepository;
+    this.cityRepository = cityRepository;
+  }
 
   public List<Trip> getAllTrips() {
     return tripRepository.findAll();
