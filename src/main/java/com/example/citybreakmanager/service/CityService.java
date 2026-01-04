@@ -2,17 +2,15 @@ package com.example.citybreakmanager.service;
 
 import com.example.citybreakmanager.model.City;
 import com.example.citybreakmanager.repository.CityRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CityService {
     private final CityRepository cityRepository;
-
-    public CityService(CityRepository cityRepository){
-        this.cityRepository = cityRepository;
-    }
 
     public List<City> getAllCities(){
         return cityRepository.findAll();
@@ -31,7 +29,6 @@ public class CityService {
         City selectedCity = cityRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(id + "not found"));
 
-        selectedCity.setId(city.getId());
         selectedCity.setCountry(city.getCountry());
         selectedCity.setDetails(city.getDetails());
         selectedCity.setName(city.getName());
@@ -43,7 +40,7 @@ public class CityService {
     public void deleteCityById(Integer id){
         City selectedCity = cityRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(id + "not found"));
-        cityRepository.deleteById(id);
+        cityRepository.delete(selectedCity);
     }
 
 }

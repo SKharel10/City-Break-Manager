@@ -1,14 +1,18 @@
-GET http://localhost:8080/api/city
+GET http://localhost:8080/api/trip
 ###
-GET http://localhost:8080/api/city/3
+GET http://localhost:8080/api/trip/3
 ###
-POST http://localhost:8080/api/city
+POST http://localhost:8080/api/trip
 Content-Type: application/json
 
 {
-  "name": "London",
-  "country": "United Kingdom",
-  "details": "The British capital"
+  "city": {
+    "id": 1
+  },
+  "startDate": "2026-01-01",
+  "endDate": "2026-01-01",
+  "rating": 5,
+  "personalNotes": "Was great"
 }
 ###
 POST http://localhost:8080/api/city
